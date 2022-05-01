@@ -51,7 +51,7 @@ for i = 1:500
     end
 end
 xticks([50 150 250 350 450]);
-xticklabels({'Fault 0','Fault 1','Fault 2','Fault 3','Fault 4'});
+xticklabels({'健康状态','重整器退化','空气泄漏','电堆退化','燃料泄漏'});
 yticks([0 1 2 3 4]);
 yticklabels({'0','1','2','3','4'});
 ylabel('故障种类')

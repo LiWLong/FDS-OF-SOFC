@@ -20,8 +20,7 @@ for i =1:500
     end
 end
 OA = sum(right_num)/500
-PA = zeros(5,2);
-PA(:,2) = OA;
+PA = zeros(5,1);
 for i = 1:5
     PA(i,1) = sum(right_num(100*i-99:100*i,1))/100;
 end
@@ -44,7 +43,7 @@ for i = 1:500
     end
 end
 xticks([50 150 250 350 450]);
-xticklabels({'Fault 0','Fault 1','Fault 2','Fault 3','Fault 4'});
+xticklabels({'健康状态','重整器退化','空气泄漏','电堆退化','燃料泄漏'});
 yticks([0 1 2 3 4]);
 yticklabels({'0','1','2','3','4'});
 ylabel('故障种类')

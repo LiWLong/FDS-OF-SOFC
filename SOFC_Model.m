@@ -9,9 +9,10 @@ qin_H2_standard = 2.4; % 氢气进入摩尔速度
 R_HO_standard = 1.144; % 氢气氧气进入速度比
 qin_air_standard = qin_H2_standard/R_HO_standard/0.21; 
 losss = [4,7];
+time = 500;
 %%
 x = 5; %状态数量
-train_data = 1;   %0:一组数据 1：sets_num组数据
+train_data = 0;   %0:一组数据 1：sets_num组数据
 sets_num = 2;     %训练数据组数
 switch train_data
     case 0
@@ -46,7 +47,7 @@ switch train_data
                      end  
                end        
 
-            % fuel leakage 
+            % 重整器退化 
             case 1
                 R_HO = R_HO_standard;
                 qin_air = qin_H2_standard/R_HO/0.21;

@@ -18,6 +18,17 @@ net.trainparam.epochs = 1000000 ;  %允许最大训练步数
 net.trainparam.goal = 0.001 ;   %训练目标最小误差0.01
 net.trainParam.lr = 0.01 ;   %学习速率0.05
 
-net = train(net,train_residual_standard',output');
+[net,tr] = train(net,train_residual_standard',output');
+figure('Color',[1 1 1]);
+figure(1)
+plotperform(tr)
+legend('Location','SouthEast')
+ylim([10e-3,1])
+saveas(gca,'./figure/BPH_training_loss.jpg');
+figure('Color',[1 1 1]);
+figure(2)
+plottrainstate(tr)
+saveas(gca,'./figure/BPH_training_lr.jpg');
+
 save('./data/Hybrid_BP_net.mat','net')
 disp('BP net is trained.')

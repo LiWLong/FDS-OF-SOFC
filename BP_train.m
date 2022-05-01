@@ -24,13 +24,23 @@ for i=1:s
     output(i,(fault_num(i)+1))=1;
 end
 
-net=newff(traindata_standard',output',[11,4],{'tansig' 'tansig'},'traingdx');
+net=newff(traindata_standard',output',[11,4],{'tansig' 'tansig'},'traingdx','plotperform');
 
 net.trainparam.show = 50 ;    % 每间隔500步显示一次训练结果
 net.trainparam.epochs = 1000000 ;  %允许最大训练步数
 net.trainparam.goal = 0.001 ;   %训练目标最小误差0.01
 net.trainParam.lr = 0.01 ;   %学习速率0.05
+[net,tr] = train(net,traindata_standard',output');
 
-net = train(net,traindata_standard',output');
+figure('Color',[1 1 1]);
+figure(1)
+plotperform(tr)
+legend('Location','SouthEast')
+ylim([10e-3,1])
+saveas(gca,'./figure/BP_training_loss.jpg');
+figure('Color',[1 1 1]);
+figure(2)
+plottrainstate(tr)
+saveas(gca,'./figure/BP_training_lr.jpg');
 save('./data/BP_net.mat','net')
 disp('BP net is trained.')

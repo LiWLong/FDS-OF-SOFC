@@ -1,8 +1,8 @@
 clear;
 clc;
 flag = 0; %0：不需要生产FC PLANT数据  1：需要
-FSM_YUZHI = 0.03;TEST_YUZHI = 0.04;
-
+FSM_YUZHI = 0.03;TEST_YUZHI = 0.045;
+time = 500;
 %% PLANT MODEL
 if flag == 1
     load('model_input.mat')
@@ -74,13 +74,13 @@ scatter(fault_num(301:400,:),dec(301:400,:),10,'filled','y');
 hold on
 scatter(fault_num(401:500,:),dec(401:500,:),10,'filled','c');
 xticks([50 150 250 350 450]);
-xticklabels({'Fault 0','Fault 1','Fault 2','Fault 3','Fault 4'});
+xticklabels({'健康状态','重整器退化','空气泄漏','电堆退化','燃料泄漏'});
 yticks([0 3 4 7 9 19 23]);
 yticklabels({'[00000]','[00011]','[00100]','[00111]','[01001]','[10011]','[10111]'});
 axis([0 500 0 25]);
 ylabel('二进制特征向量')
 saveas(gca,'./figure/FSM_fig.jpg');
-fault = [0 19 9 4 7];
+fault = [0 23 9 4 7];
 
 %% OA计算
 residual_binary_OA = zeros(500,5);
@@ -115,9 +115,9 @@ for i = 1:500
     end
 end
 xticks([50 150 250 350 450]);
-xticklabels({'Fault 0','Fault 1','Fault 2','Fault 3','Fault 4'});
+xticklabels({'健康状态','重整器退化','空气泄漏','电堆退化','燃料泄漏'});
 yticks([0 4 7 9 23]);
-yticklabels({'[00000]','[00100]','[00111]','[01001]','[10011]','[10111]'});
+yticklabels({'[00000]','[00100]','[00111]','[01001]','[10011]'});
 axis([0 500 0 25]);
 ylabel('二进制特征向量')
 saveas(gca,'./figure/model_base_FDI.jpg');
